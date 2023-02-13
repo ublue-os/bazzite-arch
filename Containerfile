@@ -9,6 +9,10 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         wget \
         base-devel \
         git \
+        pipewire \
+        pipewire-pulse \
+        lib32-pipewire \
+        lib32-libpulse \
         steam \
         lutris \
         --noconfirm
