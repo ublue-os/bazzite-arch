@@ -52,6 +52,7 @@ RUN git config --global protocol.file.allow always && \
         aur/lib32-mangohud \
         aur/latencyflex-git \
         aur/latencyflex-wine-git \
+        aur/opencl-amd \
         --noconfirm
 USER root
 WORKDIR /
@@ -67,6 +68,10 @@ RUN git clone https://github.com/89luca89/distrobox.git && \
     cp distrobox/host-spawn /usr/bin/host-spawn && \
     chmod +x /usr/bin/host-spawn && \
     rm -drf distrobox
+
+# Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
+# We do this last because it'll only apply to updates the user makes going forward. We don't want to optimize for the build host's environment.
+RUN sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
 
 # Cleanup
 RUN userdel -r build && \
