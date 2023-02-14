@@ -9,10 +9,14 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         wget \
         base-devel \
         git \
+        nvidia \
+        libva-mesa-driver \
+        intel-media-driver \
         pipewire \
         pipewire-pulse \
         lib32-pipewire \
         lib32-libpulse \
+        wine \
         steam \
         lutris \
         --noconfirm
@@ -40,23 +44,13 @@ RUN git config --global protocol.file.allow always && \
         aur/latencyflex-wine-git \
         --noconfirm
 
-# Nvidia Drivers
-RUN git clone https://github.com/Frogging-Family/nvidia-all.git && \
-    cd nvidia-all && \
-    sed -i 's/_driver_branch=""/_driver_branch="regular"/g' customization.cfg && \
-    cat PKGBUILD | grep -A 1 "\"\$CONDITION\" = \"2\"" | grep "_driver_version" | head -1 | cut -d '=' -f 2 | cut -d "'" -f 1 > driver.ver && \
-    sed -i 's,_driver_version="",_driver_version=\"'"$(cat driver.ver)"'\",g' customization.cfg && \
-    sed -i 's/_open_source_modules=""/_open_source_modules="false"/g' customization.cfg && \
-    sed -i 's/_dkms=""/_dkms="false"/g' customization.cfg && \
-    makepkg -si --noconfirm && \
-    cd .. && \
-    rm -drf nvidia-all
-
 # Cleanup
 USER root
 WORKDIR /
 RUN userdel -r build && \
-    rm -drf /home/build
+    rm -drf /home/build && \
+    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
 
 # Integrate with the host
 RUN git clone https://github.com/89luca89/distrobox.git && \
