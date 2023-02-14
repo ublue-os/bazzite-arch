@@ -10,9 +10,10 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         base-devel \
         git \
         nvidia-utils \
+        vulkan-radeon \
+        lib32-vulkan-radeon \
         libva-mesa-driver \
         intel-media-driver \
-        lib32-vulkan-radeon \
         openal \
         pipewire \
         pipewire-pulse \
@@ -22,10 +23,13 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         lib32-pipewire-jack \
         lib32-libpulse \
         lib32-openal \
+        --noconfirm && \
+    pacman -S \
         wine \
         steam \
         lutris \
         --noconfirm
+        # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
 # Add yay and install AUR packages
 RUN useradd -m --shell=/bin/bash build && usermod -L build && \
@@ -49,14 +53,8 @@ RUN git config --global protocol.file.allow always && \
         aur/latencyflex-git \
         aur/latencyflex-wine-git \
         --noconfirm
-
-# Cleanup
 USER root
 WORKDIR /
-RUN userdel -r build && \
-    rm -drf /home/build && \
-    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
 
 # Integrate with the host
 RUN git clone https://github.com/89luca89/distrobox.git && \
@@ -69,3 +67,12 @@ RUN git clone https://github.com/89luca89/distrobox.git && \
     cp distrobox/host-spawn /usr/bin/host-spawn && \
     chmod +x /usr/bin/host-spawn && \
     rm -drf distrobox
+
+# Cleanup
+RUN userdel -r build && \
+    rm -drf /home/build && \
+    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    rm -rf \
+    /tmp/* \
+    /var/*
