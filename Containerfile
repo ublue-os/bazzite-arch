@@ -12,10 +12,15 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         nvidia \
         libva-mesa-driver \
         intel-media-driver \
+        openal \
         pipewire \
         pipewire-pulse \
+        pipewire-alsa \
+        pipewire-jack \
         lib32-pipewire \
+        lib32-pipewire-jack \
         lib32-libpulse \
+        lib32-openal \
         wine \
         steam \
         lutris \
