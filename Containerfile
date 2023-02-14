@@ -12,6 +12,7 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         nvidia-utils \
         libva-mesa-driver \
         intel-media-driver \
+        lib32-vulkan-radeon \
         openal \
         pipewire \
         pipewire-pulse \
