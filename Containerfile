@@ -52,6 +52,8 @@ RUN git config --global protocol.file.allow always && \
         aur/lib32-mangohud \
         aur/latencyflex-git \
         aur/latencyflex-wine-git \
+        aur/libdxvk \
+        aur/lib32-libdxvk \
         aur/opencl-amd \
         --noconfirm
 USER root
