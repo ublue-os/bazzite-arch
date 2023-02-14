@@ -9,7 +9,7 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
         wget \
         base-devel \
         git \
-        nvidia \
+        nvidia-utils \
         libva-mesa-driver \
         intel-media-driver \
         openal \
