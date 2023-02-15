@@ -39,7 +39,7 @@ jobs:
           images: |
             ${{ env.IMAGE_NAME }}
           labels: |
-            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/bazzite/main/README.md
+            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/bazzite-arch/main/README.md
 
       - name: Generate tags
         id: generate-tags
