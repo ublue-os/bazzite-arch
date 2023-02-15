@@ -4,7 +4,12 @@ FROM docker.io/library/archlinux:latest
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" | tee -a /etc/pacman.conf && \
     sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
-    pacman -Syu --noconfirm
+    pacman -Syu --noconfirm && \
+    pacman -S \
+        wget \
+        base-devel \
+        git \
+        --noconfirm
 
 # Create build user
 RUN useradd -m --shell=/bin/bash build && usermod -L build && \
@@ -12,11 +17,6 @@ RUN useradd -m --shell=/bin/bash build && usermod -L build && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Distrobox Integration
-RUN pacman -S \
-        wget \
-        base-devel \
-        git \
-        --noconfirm
 USER build
 WORKDIR /home/build
 RUN git clone https://github.com/KyleGospo/xdg-utils-distrobox-arch.git --single-branch && \
@@ -53,9 +53,9 @@ RUN pacman -S \
         lib32-openal \
         --noconfirm && \
     pacman -S \
-        wine \
         steam \
         lutris \
+        wine \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
