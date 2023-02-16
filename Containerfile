@@ -15,22 +15,10 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
 RUN useradd -m --shell=/bin/bash build && usermod -L build && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-USER build
-WORKDIR /home/build
-
-# Nvidia Drivers
-RUN git clone https://github.com/Frogging-Family/nvidia-all.git && \
-    cd nvidia-all && \
-    sed -i 's/_driver_branch=""/_driver_branch="regular"/g' customization.cfg && \
-    cat PKGBUILD | grep -A 1 "\"\$CONDITION\" = \"2\"" | grep "_driver_version" | head -1 | cut -d '=' -f 2 | cut -d "'" -f 1 > driver.ver && \
-    sed -i 's,_driver_version="",_driver_version=\"'"$(cat driver.ver)"'\",g' customization.cfg && \
-    sed -i 's/_open_source_modules=""/_open_source_modules="false"/g' customization.cfg && \
-    sed -i 's/_dkms=""/_dkms="false"/g' customization.cfg && \
-    makepkg -si --noconfirm && \
-    cd .. && \
-    rm -drf nvidia-all
 
 # Distrobox Integration
+USER build
+WORKDIR /home/build
 RUN git clone https://github.com/KyleGospo/xdg-utils-distrobox-arch.git --single-branch && \
     cd xdg-utils-distrobox-arch/trunk && \
     makepkg -si --noconfirm && \
