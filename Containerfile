@@ -92,4 +92,4 @@ RUN userdel -r build && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     rm -rf \
         /tmp/* \
-        /var/*
+	/var/cache/pacman/pkg/*
