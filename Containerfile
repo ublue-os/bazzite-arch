@@ -6,6 +6,12 @@ COPY etc /etc
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" | tee -a /etc/pacman.conf && \
     sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
+    pacman-key --init && \
+    pacman-key --populate archlinux && \
+    pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com && \
+    pacman-key --lsign-key FBA220DFC880C036 && \
+    pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm && \
+    printf "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist\n" | tee -a /etc/pacman.conf && \
     pacman -Syu --noconfirm && \
     pacman -S \
         wget \
@@ -56,15 +62,15 @@ RUN pacman -S \
     pacman -S \
         steam \
         lutris \
-        wine \
+        lutris-wine-git \
+        latencyflex \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
 # Add paru and install AUR packages
 USER build
 WORKDIR /home/build
-RUN git config --global protocol.file.allow always && \
-    git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd paru-bin && \
     makepkg -si --noconfirm && \
     cd .. && \
@@ -75,8 +81,6 @@ RUN git config --global protocol.file.allow always && \
         aur/lib32-vkbasalt \
         aur/mangohud \
         aur/lib32-mangohud \
-        aur/latencyflex-git \
-        aur/latencyflex-wine-git \
         aur/libdxvk \
         aur/lib32-libdxvk \
         --noconfirm
