@@ -60,16 +60,16 @@ RUN pacman -S \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
-# Add yay and install AUR packages
+# Add paru and install AUR packages
 USER build
 WORKDIR /home/build
 RUN git config --global protocol.file.allow always && \
-    git clone https://aur.archlinux.org/yay-bin.git --single-branch && \
-    cd yay-bin && \
+    git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+    cd paru-bin && \
     makepkg -si --noconfirm && \
     cd .. && \
-    rm -drf yay-bin && \
-    yay -S \
+    rm -drf paru-bin && \
+    paru -S \
         aur/protontricks \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
