@@ -63,6 +63,8 @@ RUN pacman -S \
         steam \
         lutris \
         lutris-wine-git \
+        mangohud \
+        lib32-mangohud \
         latencyflex \
         vkbasalt \
         lib32-vkbasalt \
@@ -79,8 +81,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     rm -drf paru-bin && \
     paru -S \
         aur/protontricks \
-        aur/mangohud \
-        aur/lib32-mangohud \
         --noconfirm
 USER root
 WORKDIR /
