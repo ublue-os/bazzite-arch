@@ -62,7 +62,6 @@ RUN pacman -S \
     pacman -S \
         steam \
         lutris \
-        lutris-wine-git \
         mangohud \
         lib32-mangohud \
         latencyflex \
