@@ -1,4 +1,7 @@
 # bazzite-arch
+
+[![build-bazzite-arch](https://github.com/ublue-os/bazzite-arch/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bazzite-arch/actions/workflows/build.yml) 
+
 These images are not meant to be used as a host operating system. Please see [bazzite-desktop](https://github.com/ublue-os/bazzite/) for more information.
 
 ## Usage
