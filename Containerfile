@@ -1,7 +1,5 @@
 FROM docker.io/library/archlinux:latest
 
-COPY etc /etc
-
 # Pacman Initialization
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" | tee -a /etc/pacman.conf && \
