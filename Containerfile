@@ -62,9 +62,7 @@ RUN pacman -S \
         lutris \
         mangohud \
         lib32-mangohud \
-        latencyflex \
         vkbasalt \
-        lib32-vkbasalt \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
@@ -78,6 +76,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     rm -drf paru-bin && \
     paru -S \
         aur/protontricks \
+        aur/latencyflex-git \
         --noconfirm
 USER root
 WORKDIR /
