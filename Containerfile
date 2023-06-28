@@ -46,6 +46,7 @@ RUN pacman -S \
         pipewire-pulse \
         pipewire-alsa \
         pipewire-jack \
+        wireplumber \
         lib32-pipewire \
         lib32-pipewire-jack \
         lib32-libpulse \
