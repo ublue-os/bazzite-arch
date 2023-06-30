@@ -76,6 +76,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         aur/protontricks \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
+        aur/reshade-shaders-git \
         aur/latencyflex-git \
         aur/libstrangle-git \
         aur/obs-vkcapture \
