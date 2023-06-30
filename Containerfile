@@ -1,5 +1,9 @@
 FROM docker.io/library/archlinux:latest
 
+# Support nvidia-container-toolkit
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES all
+
 # Pacman Initialization
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" | tee -a /etc/pacman.conf && \
