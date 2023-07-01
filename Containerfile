@@ -55,6 +55,7 @@ RUN pacman -S \
         lib32-pipewire-jack \
         lib32-libpulse \
         lib32-openal \
+        fish \
         --noconfirm && \
     pacman -S \
         steam \
