@@ -55,6 +55,7 @@ RUN pacman -S \
         lib32-pipewire-jack \
         lib32-libpulse \
         lib32-openal \
+        xdg-desktop-portal-kde \
         fish \
         --noconfirm && \
     pacman -S \
@@ -64,6 +65,11 @@ RUN pacman -S \
         lib32-mangohud \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
+
+# Temporary workarounds while we wait for various packages on the AUR to update.
+RUN pacman -S vulkan-validation-layers --noconfirm && \
+    ln -s /usr/include/vulkan/generated/vk_layer_dispatch_table.h \
+          /usr/include/vulkan/vk_layer_dispatch_table.h
 
 # Add paru and install AUR packages
 USER build
@@ -75,15 +81,16 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     rm -drf paru-bin && \
     paru -S \
         aur/protontricks \
-        aur/vkbasalt \
-        aur/lib32-vkbasalt \
-        aur/reshade-shaders-git \
         aur/latencyflex-git \
-        aur/libstrangle-git \
+        aur/vkbasalt-git \
+        aur/reshade-shaders-git \
         aur/obs-vkcapture \
         --noconfirm
 USER root
 WORKDIR /
+
+# Temporary workarounds while we wait for various packages on the AUR to update.
+RUN rm /usr/include/vulkan/vk_layer_dispatch_table.h
 
 # Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
 # We do this last because it'll only apply to updates the user makes going forward. We don't want to optimize for the build host's environment.
