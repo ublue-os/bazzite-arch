@@ -1,6 +1,6 @@
 FROM docker.io/library/archlinux:latest
 
-# Support nvidia-container-toolkit
+# Support Nvidia Container Runtime (https://developer.nvidia.com/nvidia-container-runtime)
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
@@ -66,11 +66,6 @@ RUN pacman -S \
         --noconfirm
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
-# Temporary workarounds while we wait for various packages on the AUR to update.
-RUN pacman -S vulkan-validation-layers --noconfirm && \
-    ln -s /usr/include/vulkan/generated/vk_layer_dispatch_table.h \
-          /usr/include/vulkan/vk_layer_dispatch_table.h
-
 # Add paru and install AUR packages
 USER build
 WORKDIR /home/build
@@ -88,9 +83,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         --noconfirm
 USER root
 WORKDIR /
-
-# Temporary workarounds while we wait for various packages on the AUR to update.
-RUN rm /usr/include/vulkan/vk_layer_dispatch_table.h
 
 # Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
 # We do this last because it'll only apply to updates the user makes going forward. We don't want to optimize for the build host's environment.
