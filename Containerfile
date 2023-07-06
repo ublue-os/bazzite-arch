@@ -79,7 +79,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         aur/latencyflex-git \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
-        aur/reshade-shaders-git \
         aur/obs-vkcapture-git \
         aur/lib32-obs-vkcapture-git \
         --noconfirm
