@@ -11,9 +11,7 @@ These images are not meant to be used as a host operating system. Please see [ba
 
 ### Nvidia
 
-Ensure the [Nvidia Container Runtime](https://developer.nvidia.com/nvidia-container-runtime) is installed, this comes pre-installed on all ublue Nvidia flavors.
-
-    distrobox create -i ghcr.io/ublue-os/bazzite-arch -n bazzite-arch --additional-flags "--runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=all"
+    distrobox create -i ghcr.io/ublue-os/bazzite-arch -n bazzite-arch --nvidia
     distrobox enter bazzite-arch
 
 ## Verification
