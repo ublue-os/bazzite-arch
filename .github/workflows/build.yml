@@ -43,6 +43,7 @@ jobs:
             org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
             org.opencontainers.image.description=These images are not meant to be used as a host operating system. Please see bazzite-desktop for more information.
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/bazzite-arch/main/README.md
+            io.artifacthub.package.logo-url=https://raw.githubusercontent.com/ublue-os/bazzite/main/repo_content/logo.png
 
       - name: Generate tags
         id: generate-tags
