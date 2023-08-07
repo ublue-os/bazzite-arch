@@ -76,7 +76,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd .. && \
     rm -drf paru-bin && \
     paru -S \
-        aur/steamcmd \
         aur/protontricks \
         aur/latencyflex-git \
         aur/vkbasalt \
