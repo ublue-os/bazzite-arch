@@ -45,6 +45,8 @@ RUN pacman -S \
         lib32-vulkan-radeon \
         libva-mesa-driver \
         intel-media-driver \
+        vulkan-mesa-layers \
+        lib32-vulkan-mesa-layers \
         openal \
         pipewire \
         pipewire-pulse \
