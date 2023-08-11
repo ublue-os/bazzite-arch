@@ -4,6 +4,8 @@ FROM docker.io/library/archlinux:latest
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
+COPY system_files /
+
 # Pacman Initialization
 # Create build user
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
@@ -86,8 +88,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         --noconfirm
 USER root
 WORKDIR /
-
-COPY bazzite-steam-runtime /usr/bin/bazzite-steam-runtime
 
 # Cleanup
 # Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
