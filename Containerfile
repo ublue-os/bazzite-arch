@@ -87,10 +87,14 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 USER root
 WORKDIR /
 
+COPY bazzite-steam-runtime /usr/bin/bazzite-steam-runtime
+
 # Cleanup
 # Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
 # We do this last because it'll only apply to updates the user makes going forward. We don't want to optimize for the build host's environment.
-RUN wget https://raw.githubusercontent.com/ublue-os/bazzite/main/system_files/deck/shared/usr/bin/bazzite-steam-runtime -O /usr/bin/bazzite-steam-runtime && \
+RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
+    sed -i 's@/usr/bin/steam-runtime@/usr/bin/bazzite-steam-runtime@g' /usr/share/applications/steam.desktop && \
+    sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
     userdel -r build && \
     rm -drf /home/build && \
