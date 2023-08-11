@@ -102,4 +102,4 @@ RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     rm -rf \
         /tmp/* \
-	/var/cache/pacman/pkg/*
+        /var/cache/pacman/pkg/*
