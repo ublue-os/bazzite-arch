@@ -3,11 +3,15 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
   schedule:
     - cron: '20 18 * * *'  # 8:20pm everyday
   push:
     branches:
       - main
+    paths-ignore:
+      - '**.md'
 env:
     IMAGE_NAME: bazzite-arch
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
