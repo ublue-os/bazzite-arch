@@ -85,6 +85,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         aur/lib32-vkbasalt \
         aur/obs-vkcapture-git \
         aur/lib32-obs-vkcapture-git \
+        aur/steamcmd \
         --noconfirm
 USER root
 WORKDIR /
