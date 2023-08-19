@@ -101,6 +101,7 @@ RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
     sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
     userdel -r build && \
+    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
