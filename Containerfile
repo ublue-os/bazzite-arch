@@ -59,7 +59,7 @@ RUN pacman -S \
         lib32-libpulse \
         lib32-openal \
         xdg-desktop-portal-kde \
-        neofetch \
+        hyfetch \
         fish \
         --noconfirm && \
     pacman -S \
