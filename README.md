@@ -6,13 +6,9 @@ Bazzite-Arch is a ready-to-game [Arch Linux](https://archlinux.org/) based OCI d
 
 ## Usage
 
-**For AMD/Intel GPU systems:**
+    distrobox create --nvidia --image ghcr.io/ublue-os/bazzite-arch --name bazzite-arch
 
-    distrobox create -i ghcr.io/ublue-os/bazzite-arch -n bazzite-arch
-
-**For Nvidia GPU systems:**
-
-    distrobox create -i ghcr.io/ublue-os/bazzite-arch -n bazzite-arch --nvidia
+<sub>For the GNOME desktop environment, you may want to replace `ghcr.io/ublue-os/bazzite-arch` in the above command with `ghcr.io/ublue-os/bazzite-arch-gnome`, which comes with `xdg-desktop-portal-gnome`.</sub>
 
 Once the image has been created, you may optionally export the pre-installed applications to your host operating system using the following:
 
@@ -20,10 +16,6 @@ Once the image has been created, you may optionally export the pre-installed app
     distrobox-enter -n bazzite-arch -- '  distrobox-export --app lutris'
     distrobox-enter -n bazzite-arch -- '  distrobox-export --app protontricks'
     distrobox-enter -n bazzite-arch -- '  mkdir -p ~/.steam && distrobox-export --bin /usr/bin/steamcmd --export-path ~/.steam && mv ~/.steam/steamcmd ~/.steam/steamcmd.sh'
-
-For desktop environments other than KDE, you may want to change the xdg-desktop-portal package. The command below will switch Bazzite-Arch to `xdg-desktop-portal-gnome`:
-
-    distrobox-enter -n bazzite-arch -- '  sudo pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && sudo pacman -S xdg-desktop-portal-gnome --noconfirm'
 
 On AMD systems you can add [ROCm GPU Compute](https://www.amd.com/en/graphics/servers-solutions-rocm) with the following:
 
