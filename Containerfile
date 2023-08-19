@@ -48,6 +48,7 @@ RUN pacman -S \
         intel-media-driver \
         vulkan-mesa-layers \
         lib32-vulkan-mesa-layers \
+        lib32-libnm \
         openal \
         pipewire \
         pipewire-pulse \
