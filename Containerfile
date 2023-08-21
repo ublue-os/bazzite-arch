@@ -35,6 +35,7 @@ RUN git clone https://github.com/89luca89/distrobox.git --single-branch && \
     cp distrobox/distrobox-host-exec /usr/bin/distrobox-host-exec && \
     ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak && \
     ln -s /usr/bin/distrobox-host-exec /usr/bin/firefox && \
+    ln -s /usr/bin/distrobox-host-exec /usr/bin/xdg-user-dir && \
     wget https://github.com/1player/host-spawn/releases/download/$(cat distrobox/distrobox-host-exec | grep host_spawn_version= | cut -d "\"" -f 2)/host-spawn-$(uname -m) -O distrobox/host-spawn && \
     cp distrobox/host-spawn /usr/bin/host-spawn && \
     chmod +x /usr/bin/host-spawn && \
