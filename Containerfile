@@ -101,8 +101,8 @@ RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
     sed -i 's@/usr/bin/steam-runtime@/usr/bin/bazzite-steam-runtime@g' /usr/share/applications/steam.desktop && \
     sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
-    userdel -r build && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
+    userdel -r build && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
@@ -115,11 +115,26 @@ FROM bazzite-arch as bazzite-arch-gnome
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
-# Replace KDE portal with GNOME portal
+# Replace KDE portal with GNOME portal, add BUILD user
 RUN pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && \
-    pacman -S xdg-desktop-portal-gnome --noconfirm
+    pacman -S xdg-desktop-portal-gnome --noconfirm && \
+    useradd -m --shell=/bin/bash build && usermod -L build && \
+    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+USER build
+WORKDIR /home/build
+RUN paru -S \
+        adw-gtk3 \
+        --noconfirm
+USER root
+WORKDIR /
 
 # Cleanup
-RUN rm -rf \
+RUN userdel -r build && \
+    rm -drf /home/build && \
+    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
