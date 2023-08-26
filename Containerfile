@@ -122,6 +122,7 @@ RUN pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# Install AUR packages
 USER build
 WORKDIR /home/build
 RUN paru -S \

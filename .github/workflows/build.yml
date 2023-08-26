@@ -1,4 +1,4 @@
-name: Bazzite-Arch
+name: Build Bazzite-Arch
 on:
   schedule:
     - cron: '20 18 * * *'  # 8:20pm everyday
