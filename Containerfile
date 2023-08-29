@@ -65,6 +65,9 @@ RUN pacman -S \
         nano \
         hyfetch \
         fish \
+        yad \
+        xdotool \
+        xorg-xwininfo \
         --noconfirm && \
     pacman -S \
         steam \
