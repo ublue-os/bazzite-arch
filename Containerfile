@@ -122,25 +122,9 @@ ENV NVIDIA_DRIVER_CAPABILITIES all
 
 # Replace KDE portal with GNOME portal, add BUILD user
 RUN pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && \
-    pacman -S xdg-desktop-portal-gnome --noconfirm && \
-    useradd -m --shell=/bin/bash build && usermod -L build && \
-    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-# Install AUR packages
-USER build
-WORKDIR /home/build
-RUN paru -S \
-        adw-gtk3 \
-        --noconfirm
-USER root
-WORKDIR /
+    pacman -S xdg-desktop-portal-gnome --noconfirm
 
 # Cleanup
-RUN userdel -r build && \
-    rm -drf /home/build && \
-    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    rm -rf \
+RUN rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
