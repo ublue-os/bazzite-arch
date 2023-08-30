@@ -68,6 +68,7 @@ RUN pacman -S \
         yad \
         xdotool \
         xorg-xwininfo \
+        wmctrl \
         --noconfirm && \
     pacman -S \
         steam \
@@ -92,6 +93,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         aur/lib32-vkbasalt \
         aur/obs-vkcapture-git \
         aur/lib32-obs-vkcapture-git \
+        aur/lib32-gperftools \
         aur/steamcmd \
         --noconfirm
 USER root
