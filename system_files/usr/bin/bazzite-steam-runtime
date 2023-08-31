@@ -7,7 +7,7 @@ if [[ "$XDG_SESSION_TYPE" = "wayland" ]] && [[ -e /usr/lib/extest/libextest.so ]
   # It's been primarily developed for allowing the desktop functionality
   # on the Steam Controller to work while Steam is open on Wayland.
   # Also supports Steam Input as a whole.
-  env LD_PRELOAD=/usr/lib/extest/libextest.so /usr/bin/steam-runtime "$@ -pipewire"
+  env LD_PRELOAD=/usr/lib/extest/libextest.so /usr/bin/steam-runtime "-pipewire $*"
 else
   /usr/bin/steam-runtime "$@"
 fi
