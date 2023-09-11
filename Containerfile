@@ -1,9 +1,5 @@
 FROM docker.io/library/archlinux:latest AS bazzite-arch
 
-# Support Nvidia Container Runtime (https://developer.nvidia.com/nvidia-container-runtime)
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES all
-
 COPY system_files /
 
 # Pacman Initialization
@@ -116,9 +112,6 @@ RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
         /var/cache/pacman/pkg/*
 
 FROM bazzite-arch as bazzite-arch-gnome
-
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES all
 
 # Replace KDE portal with GNOME portal, add BUILD user
 RUN pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && \
