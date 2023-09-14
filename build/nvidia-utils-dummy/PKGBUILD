@@ -1,0 +1,8 @@
+pkgname=nvidia-utils-dummy
+pkgver=1
+pkgrel=1
+arch=('i686' 'x86_64')
+license=('custom')
+depends=('egl-wayland' 'libglvnd' 'xorg-server' 'lib32-gcc-libs' 'lib32-libglvnd' 'lib32-zlib')
+provides=('vulkan-driver' 'lib32-vulkan-driver' 'nvidia-utils' 'lib32-nvidia-utils')
+conflicts=(${provides[@]})

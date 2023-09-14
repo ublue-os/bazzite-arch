@@ -7,6 +7,7 @@ ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
 COPY system_files /
+COPY build /tmp
 
 # Pacman Initialization
 # Create build user
@@ -30,7 +31,11 @@ RUN git clone https://github.com/KyleGospo/xdg-utils-distrobox-arch.git --single
     cd xdg-utils-distrobox-arch/trunk && \
     makepkg -si --noconfirm && \
     cd ../.. && \
-    rm -drf xdg-utils-distrobox-arch
+    rm -drf xdg-utils-distrobox-arch \
+    if grep -q "nvidia" <<< ${IMAGE_FLAVOR}; then \
+        cd /tmp/nvidia-utils-dummy && \
+        makepkg -si --noconfirm \
+    ; fi
 USER root
 WORKDIR /
 RUN git clone https://github.com/89luca89/distrobox.git --single-branch && \
