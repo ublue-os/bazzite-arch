@@ -48,6 +48,7 @@ RUN if grep -q "main" <<< ${IMAGE_FLAVOR}; then \
     pacman -S \
         vulkan-radeon \
         lib32-vulkan-radeon \
+        --noconfirm \
     ; fi && \
     pacman -S \
         libva-mesa-driver \
