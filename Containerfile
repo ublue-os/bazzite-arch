@@ -44,9 +44,12 @@ RUN git clone https://github.com/89luca89/distrobox.git --single-branch && \
     rm -drf distrobox
 
 # Install needed packages
-RUN pacman -S \
+RUN if grep -q "main" <<< ${IMAGE_FLAVOR}; then \
+    pacman -S \
         vulkan-radeon \
         lib32-vulkan-radeon \
+    ; fi && \
+    pacman -S \
         libva-mesa-driver \
         intel-media-driver \
         vulkan-mesa-layers \
