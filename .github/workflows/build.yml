@@ -32,6 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        image_flavor: [main, nvidia]
         base_name: [bazzite-arch, bazzite-arch-gnome]
         include:
           - is_latest_version: true
@@ -43,7 +44,11 @@ jobs:
 
       - name: Matrix Variables
         run: |
-          echo "IMAGE_NAME=${{ matrix.base_name }}" >> $GITHUB_ENV
+          if [[ "${{ matrix.image_flavor }}" == "main" ]]; then
+              echo "IMAGE_NAME=${{ matrix.base_name }}" >> $GITHUB_ENV
+          else
+              echo "IMAGE_NAME=${{ format('{0}-{1}', matrix.base_name, matrix.image_flavor) }}" >> $GITHUB_ENV
+          fi
 
       - name: Generate tags
         id: generate-tags
@@ -107,6 +112,8 @@ jobs:
           containerfiles: |
             ./Containerfile
           image: ${{ env.IMAGE_NAME }}
+          build-args: |
+            IMAGE_FLAVOR=${{ matrix.image_flavor }}
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
           labels: ${{ steps.meta.outputs.labels }}
