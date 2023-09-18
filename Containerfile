@@ -91,7 +91,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
         aur/lib32-obs-vkcapture-git \
         aur/lib32-gperftools \
         aur/steamcmd \
-        aur/adw-gtk3 \
+        aur/xcursor-breeze \
         --noconfirm
 USER root
 WORKDIR /
@@ -114,11 +114,36 @@ RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
 
 FROM bazzite-arch as bazzite-arch-gnome
 
-# Replace KDE portal with GNOME portal, add BUILD user
-RUN pacman -Rnsdd xdg-desktop-portal-kde --noconfirm && \
-    pacman -S xdg-desktop-portal-gnome --noconfirm
+# Replace KDE portal with GNOME portal, swap included icon theme.
+RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/makepkg.conf && \
+    pacman -Rnsdd \
+        xdg-desktop-portal-kde \
+        --noconfirm && \
+    pacman -S \
+        xdg-desktop-portal-gnome \
+        --noconfirm && \
+    useradd -m --shell=/bin/bash build && usermod -L build && \
+    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Add adw-gtk3 theme.
+USER build
+WORKDIR /home/build
+RUN paru -R \
+        aur/xcursor-breeze \
+        --noconfirm && \
+    paru -S \
+        aur/adw-gtk3 \
+        --noconfirm
+USER root
+WORKDIR /
 
 # Cleanup
-RUN rm -rf \
+RUN userdel -r build && \
+    rm -drf /home/build && \
+    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
+    rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
