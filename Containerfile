@@ -99,9 +99,7 @@ WORKDIR /
 # Cleanup
 # Native march & tune. This is a gaming image and not something a user is going to compile things in with the intent to share.
 # We do this last because it'll only apply to updates the user makes going forward. We don't want to optimize for the build host's environment.
-RUN ln -s /usr/bin/bazzite-steam-runtime /usr/bin/bazzite-steam && \
-    sed -i 's@/usr/bin/steam-runtime@/usr/bin/bazzite-steam-runtime@g' /usr/share/applications/steam.desktop && \
-    sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
+RUN sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
     userdel -r build && \
