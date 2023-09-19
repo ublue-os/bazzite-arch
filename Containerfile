@@ -118,7 +118,7 @@ RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/m
         xdg-desktop-portal-kde \
         --noconfirm && \
     pacman -S \
-        xdg-desktop-portal-gnome \
+        xdg-desktop-portal-gtk \
         --noconfirm && \
     useradd -m --shell=/bin/bash build && usermod -L build && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
