@@ -65,6 +65,7 @@ RUN pacman -S \
         xdotool \
         xorg-xwininfo \
         wmctrl \
+        wxwidgets-gtk3 \
         --noconfirm && \
     pacman -S \
         steam \
