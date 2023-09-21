@@ -36,9 +36,54 @@ RUN git clone https://github.com/89luca89/distrobox.git --single-branch && \
     chmod +x /usr/bin/host-spawn && \
     rm -drf distrobox
 
+# Install packages Distrobox adds automatically, this speeds up first launch
+RUN pacman -S \
+        bash-completion \
+        bc \
+        curl \
+        diffutils \
+        findutils \
+        glibc \
+        gnupg \
+        inetutils \
+        keyutils \
+        less \
+        lsof \
+        man-db \
+        man-pages \
+        mlocate \
+        mtr \
+        ncurses \
+        nss-mdns \
+        openssh \
+        pigz \
+        pinentry \
+        procps-ng \
+        rsync \
+        shadow \
+        sudo \
+        tcpdump \
+        time \
+        traceroute \
+        tree \
+        tzdata \
+        unzip \
+        util-linux \
+        util-linux-libs \
+        vte-common \
+        wget \
+        words \
+        xorg-xauth \
+        zip \
+        mesa \
+        opengl-driver \
+        vulkan-intel \
+        vte-common \
+        vulkan-radeon \
+        --noconfirm
+
 # Install needed packages
 RUN pacman -S \
-        vulkan-radeon \
         lib32-vulkan-radeon \
         libva-mesa-driver \
         intel-media-driver \
