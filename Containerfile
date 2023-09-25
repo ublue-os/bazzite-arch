@@ -1,4 +1,4 @@
-FROM docker.io/library/archlinux:latest AS bazzite-arch
+FROM quay.io/toolbx-images/archlinux-toolbox AS bazzite-arch
 
 COPY system_files /
 
