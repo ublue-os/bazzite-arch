@@ -21,7 +21,7 @@ On AMD systems you can add [ROCm GPU Compute](https://www.amd.com/en/graphics/se
 
     distrobox-enter -n bazzite-arch -- '  sudo pacman -S rocm-opencl-runtime rocm-hip-runtime --noconfirm'
 
-Bazzite-Arch is built from [arch-distrobox](https://github.com/ublue-os/arch-distrobox) and ships with [paru](https://github.com/Morganamilo/paru) pre-installed, along with a modified [xdg-utils](https://github.com/KyleGospo/xdg-utils-distrobox-arch) that allows the container to open your host operating system's web browsers and file explorer.
+Bazzite-Arch is built from [arch-distrobox](https://github.com/ublue-os/arch-distrobox), which ships with [paru](https://github.com/Morganamilo/paru) pre-installed, along with a modified [xdg-utils](https://github.com/KyleGospo/xdg-utils-distrobox-arch) that allows the container to open your host operating system's web browsers and file explorer.
 
 ## Verification
 
