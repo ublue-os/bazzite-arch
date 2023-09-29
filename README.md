@@ -17,10 +17,6 @@ Once the image has been created, you may optionally export the pre-installed app
     distrobox-enter -n bazzite-arch -- '  distrobox-export --app protontricks'
     distrobox-enter -n bazzite-arch -- '  mkdir -p ~/.steam && distrobox-export --bin /usr/bin/steamcmd --export-path ~/.steam && mv ~/.steam/steamcmd ~/.steam/steamcmd.sh'
 
-On AMD systems you can add [ROCm GPU Compute](https://www.amd.com/en/graphics/servers-solutions-rocm) with the following:
-
-    distrobox-enter -n bazzite-arch -- '  sudo pacman -S rocm-opencl-runtime rocm-hip-runtime --noconfirm'
-
 Bazzite-Arch is built from [arch-distrobox](https://github.com/ublue-os/arch-distrobox), which ships with [paru](https://github.com/Morganamilo/paru) pre-installed, along with a modified [xdg-utils](https://github.com/KyleGospo/xdg-utils-distrobox-arch) that allows the container to open your host operating system's web browsers and file explorer.
 
 ## Verification
