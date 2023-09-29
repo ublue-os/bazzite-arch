@@ -31,6 +31,8 @@ RUN pacman -S \
         xorg-xwininfo \
         wmctrl \
         wxwidgets-gtk3 \
+        rocm-opencl-runtime \
+        rocm-hip-runtime \
         --noconfirm && \
     pacman -S \
         steam \
