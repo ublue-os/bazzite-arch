@@ -6,7 +6,7 @@ Bazzite-Arch is a ready-to-game [Arch Linux](https://archlinux.org/) based OCI d
 
 ## Usage
 
-    distrobox create --unshare-netns --nvidia --image ghcr.io/ublue-os/bazzite-arch --name bazzite-arch
+    distrobox-create --unshare-netns --nvidia --image ghcr.io/ublue-os/bazzite-arch --name bazzite-arch
 
 <sub>For the GNOME desktop environment, you may want to replace `ghcr.io/ublue-os/bazzite-arch` in the above command with `ghcr.io/ublue-os/bazzite-arch-gnome`, which comes with `xdg-desktop-portal-gtk`.</sub>
 
