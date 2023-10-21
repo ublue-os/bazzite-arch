@@ -33,6 +33,7 @@ RUN pacman -S \
         wxwidgets-gtk3 \
         rocm-opencl-runtime \
         rocm-hip-runtime \
+        libbsd \
         --noconfirm && \
     pacman -S \
         steam \
