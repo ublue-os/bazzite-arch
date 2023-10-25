@@ -60,6 +60,7 @@ RUN paru -S \
         aur/lib32-obs-vkcapture-git \
         aur/lib32-gperftools \
         aur/steamcmd \
+        aur/alvr \
         --noconfirm
 USER root
 WORKDIR /
