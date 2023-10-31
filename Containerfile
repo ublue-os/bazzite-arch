@@ -90,6 +90,7 @@ RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/m
         --noconfirm && \
     pacman -S \
         xdg-desktop-portal-gtk \
+        xdg-desktop-portal-gnome \
         --noconfirm
 
 # Cleanup
