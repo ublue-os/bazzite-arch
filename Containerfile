@@ -34,6 +34,7 @@ RUN pacman -S \
         rocm-opencl-runtime \
         rocm-hip-runtime \
         libbsd \
+        noto-fonts-cjk \
         --noconfirm && \
     pacman -S \
         steam \
@@ -56,8 +57,6 @@ USER build
 WORKDIR /home/build
 RUN paru -S \
         aur/protontricks \
-        aur/latencyflex-git \
-        aur/latencyflex-wine-git \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
         aur/obs-vkcapture-git \
