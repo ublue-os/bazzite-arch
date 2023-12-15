@@ -2,7 +2,7 @@
 
 [![build-bazzite-arch](https://github.com/ublue-os/bazzite-arch/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bazzite-arch/actions/workflows/build.yml) 
 
-Bazzite-Arch is a ready-to-game [Arch Linux](https://archlinux.org/) based OCI designed for use exclusively in [distrobox](https://github.com/89luca89/distrobox). It is part of the [Bazzite](https://github.com/ublue-os/bazzite/) project and is used for running Steam, Lutris, and Protontricks in the desktop images. It may also be used on any Linux distributon by following the usage section below.
+Bazzite-Arch is a ready-to-game [Arch Linux](https://archlinux.org/) based OCI designed for use exclusively in [distrobox](https://github.com/89luca89/distrobox). It can be used on any Linux distributon by following the usage section below.
 
 ## Usage
 
