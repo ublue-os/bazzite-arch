@@ -3,7 +3,8 @@ FROM ghcr.io/ublue-os/arch-distrobox AS bazzite-arch
 COPY system_files /
 
 # Install needed packages
-RUN pacman -S \
+RUN pacman -Syyu && \
+    pacman -S \
         lib32-vulkan-radeon \
         libva-mesa-driver \
         intel-media-driver \
