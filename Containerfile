@@ -43,6 +43,7 @@ RUN pacman -Syyu && \
         lutris \
         mangohud \
         lib32-mangohud \
+        papirus-icon-theme \
         --noconfirm && \
         wget https://raw.githubusercontent.com/Shringe/LatencyFleX-Installer/main/install.sh -O /usr/bin/latencyflex && \
         sed -i 's@"dxvk.conf"@"/usr/share/latencyflex/dxvk.conf"@g' /usr/bin/latencyflex && \
