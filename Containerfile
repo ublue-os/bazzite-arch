@@ -36,6 +36,7 @@ RUN pacman -Syyu && \
         rocm-hip-runtime \
         libbsd \
         noto-fonts-cjk \
+        glibc-locales \
         --noconfirm && \
     pacman -S \
         steam \
