@@ -45,7 +45,9 @@ RUN pacman -S \
         --noconfirm && \
         wget https://raw.githubusercontent.com/Shringe/LatencyFleX-Installer/main/install.sh -O /usr/bin/latencyflex && \
         sed -i 's@"dxvk.conf"@"/usr/share/latencyflex/dxvk.conf"@g' /usr/bin/latencyflex && \
-        chmod +x /usr/bin/latencyflex
+        chmod +x /usr/bin/latencyflex && \
+    pacman -S --clean --clean && \
+    rm -rf /var/cache/pacman/pkg/*
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
 # Create build user
@@ -77,6 +79,7 @@ RUN sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    rm -rf /home/build/.cache/* && \
     rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
@@ -91,10 +94,10 @@ RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/m
     pacman -S \
         xdg-desktop-portal-gtk \
         xdg-desktop-portal-gnome \
-        --noconfirm
+        --noconfirm && \
+    rm -rf /var/cache/pacman/pkg/*
 
 # Cleanup
 RUN sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
     rm -rf \
-        /tmp/* \
-        /var/cache/pacman/pkg/*
+        /tmp/*
