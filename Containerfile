@@ -39,6 +39,7 @@ RUN pacman -Syyu && \
         glibc-locales \
         --noconfirm && \
     pacman -S \
+        gamescope \
         steam \
         lutris \
         mangohud \
