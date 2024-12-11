@@ -45,10 +45,7 @@ RUN pacman -Syyu && \
         mangohud \
         lib32-mangohud \
         papirus-icon-theme \
-        --noconfirm && \
-        wget https://raw.githubusercontent.com/Shringe/LatencyFleX-Installer/main/install.sh -O /usr/bin/latencyflex && \
-        sed -i 's@"dxvk.conf"@"/usr/share/latencyflex/dxvk.conf"@g' /usr/bin/latencyflex && \
-        chmod +x /usr/bin/latencyflex
+        --noconfirm \
         # Steam/Lutris/Wine installed separately so they use the dependencies above and don't try to install their own.
 
 # Create build user
@@ -67,6 +64,8 @@ RUN paru -S \
         aur/lib32-obs-vkcapture-git \
         aur/lib32-gperftools \
         aur/steamcmd \
+        aur/latencyflex-bin \
+        aur/latencyflex-proton-ge-custom \
         --noconfirm
 USER root
 WORKDIR /
