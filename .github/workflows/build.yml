@@ -147,6 +147,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
           extra-args: |
             --disable-content-trust
+            --compression-format=zstd:chunked
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
