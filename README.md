@@ -9,6 +9,7 @@ Bazzite-Arch is a ready-to-game [Arch Linux](https://archlinux.org/) based OCI d
     distrobox-create --unshare-netns --nvidia --image ghcr.io/ublue-os/bazzite-arch --name bazzite-arch -Y
 
 <sub>For the GNOME desktop environment, you may want to replace `ghcr.io/ublue-os/bazzite-arch` in the above command with `ghcr.io/ublue-os/bazzite-arch-gnome`, which comes with `xdg-desktop-portal-gtk`.</sub>
+<sub >For Intel and AMD GPUs, the support is baked in, as the containers will install their latest available mesa/dri drivers.</sub>
 
 Once the image has been created, you may optionally export the pre-installed applications to your host operating system using the following:
 
