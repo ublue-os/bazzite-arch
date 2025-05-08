@@ -17,7 +17,7 @@ Once the image has been created, you may optionally export the pre-installed app
     distrobox-enter -n bazzite-arch -- '  distrobox-export --app protontricks'
     distrobox-enter -n bazzite-arch -- '  mkdir -p ~/.steam && distrobox-export --bin /usr/bin/steamcmd --export-path ~/.steam && mv ~/.steam/steamcmd ~/.steam/steamcmd.sh'
 
-Bazzite-Arch is built from [arch-distrobox](https://github.com/ublue-os/arch-distrobox), which ships with [paru](https://github.com/Morganamilo/paru) pre-installed, along with a modified [xdg-utils](https://github.com/KyleGospo/xdg-utils-distrobox-arch) that allows the container to open your host operating system's web browsers and file explorer.
+Bazzite-Arch is built from [arch-toolbox](https://github.com/ublue-os/toolboxes/tree/main/toolboxes/arch-toolbox), which ships with [paru](https://github.com/Morganamilo/paru) pre-installed, along with a modified [xdg-utils](https://github.com/KyleGospo/xdg-utils-distrobox-arch) that allows the container to open your host operating system's web browsers and file explorer.
 
 ## Verification
 
