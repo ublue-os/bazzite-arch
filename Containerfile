@@ -1,4 +1,4 @@
-FROM ghcr.io/ublue-os/arch-toolbox@sha256:dbe8d9b80dcee9cb3e91b2209ab3ae195c5e962bd956ab171dd22490b47f9ff8 AS bazzite-arch
+FROM ghcr.io/ublue-os/arch-toolbox@sha256:ef75fa7f46ac09e0810ffdfd4415a006e5b43f4e397e7a86b1f98cd3d095883d AS bazzite-arch
 
 COPY system_files /
 
