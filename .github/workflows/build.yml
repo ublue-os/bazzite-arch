@@ -1,7 +1,5 @@
 name: Build Bazzite-Arch
 on:
-  schedule:
-    - cron: '0 19 * * *'  # 9:00pm everyday
   pull_request:
     branches:
       - main
